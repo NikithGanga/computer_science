@@ -1,12 +1,15 @@
 # Insertion Sort
+
 Insertion Sort is a simple sorting algorithm that works the way we sort playing cards in our hands.
 
 ## Complexity
+
 | Best | Average | Worst | Memory | Stable |
-|------|---------|-------|--------|--------|
+| ---- | ------- | ----- | ------ | ------ |
 | n    | n^2     | n^2   | 1      | Yes    |
 
 ## Sudo Code
+
 ```
 procedure insertionSort( A : list of sortable items )
     n = length(A)
@@ -33,18 +36,19 @@ procedure insertionSortDesc( A : list of sortable items )
 end procedure
 ```
 
-
-
 ## Implementations
-* [Python](#python)
-* [C++](#cpp)
-* [C](#c)
-* [Java](#java)
-* [JavaScript](#javascript)
-* [Go](#go)
-* [Ruby](#ruby)
+
+- [Python](#python)
+- [C++](#cpp)
+- [C](#c)
+- [Java](#java)
+- [JavaScript](#javascript)
+- [Go](#go)
+- [Ruby](#ruby)
+- [Rust](#rust)
 
 ### Python
+
 ```python
 def insertionSort(arr):
     for i in range(1, len(arr)):
@@ -76,6 +80,7 @@ for i in range(len(arr)):
 ```
 
 ### CPP
+
 ```cpp
 #include <iostream>
 using namespace std;
@@ -93,6 +98,23 @@ void insertionSort(int arr[], int n)
         }
         arr[j + 1] = key;
     }
+}
+
+void insertion(int *arr, int n)
+{
+	for(int i=1; i<n; i++)
+	{
+		int key=arr[i];
+		int j=i-1;
+		while(j>=0 and arr[j]<key)              // arr[j] > key --> Ascending Order
+		{
+			arr[j+1]=arr[j];
+			j-=1;
+		}
+		arr[j+1]=key;
+	}
+	for(int i=0;i<n;i++)
+		cout << arr[i] << " ";
 }
 
 void insertionSortDesc(int arr[], int n)
@@ -135,6 +157,7 @@ int main()
 ```
 
 ### C
+
 ```c
 #include <stdio.h>
 
@@ -194,6 +217,7 @@ int main()
 ```
 
 ### Java
+
 ```java
 
 import java.util.Arrays;
@@ -237,31 +261,32 @@ public class InsertionSort {
 ```
 
 ### JavaScript
+
 ```js
 function insertionSort(arr) {
-    var n = arr.length;
-    for (var i = 1; i < n; i++) {
-        var key = arr[i];
-        var j = i - 1;
-        while (j >= 0 && arr[j] > key) {
-            arr[j + 1] = arr[j];
-            j = j - 1;
-        }
-        arr[j + 1] = key;
+  var n = arr.length;
+  for (var i = 1; i < n; i++) {
+    var key = arr[i];
+    var j = i - 1;
+    while (j >= 0 && arr[j] > key) {
+      arr[j + 1] = arr[j];
+      j = j - 1;
     }
+    arr[j + 1] = key;
+  }
 }
 
 function insertionSortDesc(arr) {
-    var n = arr.length;
-    for (var i = 1; i < n; i++) {
-        var key = arr[i];
-        var j = i - 1;
-        while (j >= 0 && arr[j] < key) {
-            arr[j + 1] = arr[j];
-            j = j - 1;
-        }
-        arr[j + 1] = key;
+  var n = arr.length;
+  for (var i = 1; i < n; i++) {
+    var key = arr[i];
+    var j = i - 1;
+    while (j >= 0 && arr[j] < key) {
+      arr[j + 1] = arr[j];
+      j = j - 1;
     }
+    arr[j + 1] = key;
+  }
 }
 
 var arr = [12, 11, 13, 5, 6];
@@ -272,6 +297,7 @@ console.log(arr);
 ```
 
 ### Go
+
 ```go
 package main
 
@@ -313,6 +339,7 @@ func main() {
 ```
 
 ### Ruby
+
 ```ruby
 def insertion_sort(arr)
     n = arr.length
@@ -347,4 +374,21 @@ insertion_sort_desc(arr)
 p arr
 ```
 
+### Rust
 
+```
+
+pub fn binary_insertion_sort(arr: &mut [i32]) {
+    for i in 1..arr.len() {
+        let val = arr[i];
+        let mut j = i;
+        let pos = arr[..i].binary_search(&val).unwrap_or_else(|pos| pos);
+        // Swap all elements until specific position.
+        while j > pos {
+            arr.swap(j - 1, j);
+            j -= 1;
+        }
+    }
+}
+
+```
